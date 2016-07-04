@@ -22,9 +22,16 @@ class HttpUtils{
         if (isset($options['headers']))
             $headers = array_merge($headers,$options['headers']);
 
+        $defaults = [
+            "CURLOPT_RETURNTRANSFER" => 1,
+            "CURLOPT_HEADER" => 0
+        ];
+
+        $options = array_merge($defaults,$options);
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, $options['CURLOPT_HEADER']);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         if (isset($options['gzip'])){

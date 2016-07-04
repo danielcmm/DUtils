@@ -1,6 +1,7 @@
 {
   "name": "danielcmm/dutils",
   "type": "library",
+  "version" : "1.0.3",
   "description": "Simple Utility Classes",
   "keywords": ["utility","currency","date","environment"],
   "homepage": "https://github.com/danielcmm/DUtils",
