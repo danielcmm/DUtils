@@ -24,14 +24,18 @@ class HttpUtils{
 
         $defaults = [
             "CURLOPT_RETURNTRANSFER" => 1,
-            "CURLOPT_HEADER" => 0
+            "CURLOPT_HEADER" => 0,
+            "CURLOPT_CONNECTTIMEOUT" => 10,
+            "CURLOPT_TIMEOUT" => 15
         ];
 
         $options = array_merge($defaults,$options);
 
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, $options['CURLOPT_RETURNTRANSFER']);
         curl_setopt($ch, CURLOPT_HEADER, $options['CURLOPT_HEADER']);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $options['CURLOPT_CONNECTTIMEOUT']);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $options['CURLOPT_TIMEOUT']);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         if (isset($options['gzip'])){
