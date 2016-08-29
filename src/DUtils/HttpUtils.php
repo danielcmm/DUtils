@@ -26,7 +26,8 @@ class HttpUtils{
             "CURLOPT_RETURNTRANSFER" => 1,
             "CURLOPT_HEADER" => 0,
             "CURLOPT_CONNECTTIMEOUT" => 10,
-            "CURLOPT_TIMEOUT" => 15
+            "CURLOPT_TIMEOUT" => 15,
+            "CURLOPT_NOBODY" => 0
         ];
 
         $options = array_merge($defaults,$options);
@@ -36,6 +37,7 @@ class HttpUtils{
         curl_setopt($ch, CURLOPT_HEADER, $options['CURLOPT_HEADER']);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $options['CURLOPT_CONNECTTIMEOUT']);
         curl_setopt($ch, CURLOPT_TIMEOUT, $options['CURLOPT_TIMEOUT']);
+        curl_setopt($ch, CURLOPT_NOBODY, $options['CURLOPT_NOBODY']);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         if (isset($options['gzip'])){
