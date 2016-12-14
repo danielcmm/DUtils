@@ -18,6 +18,9 @@ class CommonValidationServiceProvider extends ServiceProvider {
                 $valor = CurrencyUtils::prepareToPersist($value);
                 return $valor >= 0.01 && $valor <= 999999999.99;
             }
+
+            return true;
+
         });
 
         Validator::extend('person_pin', function($attribute, $value, $parameters, $validator) {
