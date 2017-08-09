@@ -2,6 +2,8 @@
 
 namespace DUtils;
 
+use DOMDocument;
+
 class StringUtils {
 
     public static function getDomainFromEmail($email) {
@@ -149,6 +151,33 @@ class StringUtils {
     public static function replaceUTF8Accentuation($string){
         return str_replace(explode("|","Ã|Ã|Ã|Ã|Ã|Ã¡|Ã¢|Ã£|Ã©|Ãª|Ã­|Ã³|Ã´|Ãº|Ã§|Ã"),
             explode(" ","Á É Í Ó Ú á â ã é ê í ó ô ú ç Ç"),$string);
+    }
+
+    public static function removeTags($html,$tags){
+
+        if (count($tags) == 0)
+            return $html;
+
+        $dom = new DOMDocument();
+        $dom->loadHTML($html);
+
+        foreach ($tags as $tag) {
+
+            $items = $dom->getElementsByTagName($tag);
+
+            $remove = [];
+            foreach($items as $item){
+                $remove[] = $item;
+            }
+
+            foreach ($remove as $item){
+                $item->parentNode->removeChild($item);
+            }
+
+        }
+
+        return $dom->saveHTML();
+
     }
 
 
