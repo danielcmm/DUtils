@@ -20,6 +20,8 @@ class FileUtils{
         $header = array();
         $aux = 0;
 
+        $isUtf8 = mb_detect_encoding(file_get_contents($file)) == 'UTF-8';
+
         if (($handle = fopen($file, "r")) !== FALSE) {
 
             while (($data = fgetcsv($handle, 0, $delimiter)) !== FALSE) {
@@ -28,7 +30,9 @@ class FileUtils{
 
                 if ($aux == 0) {
                     foreach ($data as $headerColumn) {
-                        $headerColumn = utf8_encode($headerColumn);
+                        if(!$isUtf8) {
+                            $headerColumn = utf8_encode($headerColumn);
+                        }
                         $headerColumn = StringUtils::replaceUTF8Accentuation($headerColumn);
                         $headerColumn = strtolower(StringUtils::removeAccentuation($headerColumn));
                         $header[] = $headerColumn;
@@ -40,8 +44,13 @@ class FileUtils{
 
                 foreach ($data as $idx => $coluna) {
 
-                    if (isset($header[$idx]))
-                        $rowData[$header[$idx]] = StringUtils::replaceUTF8Accentuation(utf8_encode($coluna));
+                    if (isset($header[$idx])){
+                        if(!$isUtf8){
+                            $coluna = utf8_encode($coluna);
+                        }
+                        $rowData[$header[$idx]] = StringUtils::replaceUTF8Accentuation($coluna);
+                    }
+
                 }
 
                 $result[] = $rowData;
@@ -52,6 +61,33 @@ class FileUtils{
         }
 
         return $result;
+
+
+    }
+
+    public static function readCsvHeader($file, $delimiter) {
+
+        $header = array();
+        $isUtf8 = mb_detect_encoding(file_get_contents($file)) == 'UTF-8';
+
+        if (($handle = fopen($file, "r")) !== FALSE) {
+
+            $data = fgetcsv($handle, 0, $delimiter);
+
+
+            foreach ($data as $headerColumn) {
+                if(!$isUtf8) {
+                    $headerColumn = utf8_encode($headerColumn);
+                }
+                $headerColumn = StringUtils::replaceUTF8Accentuation($headerColumn);
+                $headerColumn = strtolower(StringUtils::removeAccentuation($headerColumn));
+                $header[] = $headerColumn;
+
+            }
+            fclose($handle);
+        }
+
+        return $header;
 
 
     }
