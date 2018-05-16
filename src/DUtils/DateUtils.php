@@ -11,20 +11,15 @@ class DateUtils {
      */
     static function prepareToPersist($data) {
 
-        if (validarData($data)) {
+        $dia = substr($data, 0, 2);
+        $mes = substr($data, 3, 2);
+        $data = $mes . "/" . $dia . substr($data, 5);
 
-            $dia = substr($data, 0, 2);
-            $mes = substr($data, 3, 2);
-            $data = $mes . "/" . $dia . substr($data, 5);
+        $formato = strlen($data) <= 10 ? "Y-m-d" : "Y-m-d H:i:s";
+        $data = strtotime($data);
+        $data = date($formato, $data);
 
-            $formato = strlen($data) <= 10 ? "Y-m-d" : "Y-m-d H:i:s";
-            $data = strtotime($data);
-            $data = date($formato, $data);
-
-            return $data;
-
-        } else
-            return null;
+        return $data;
 
     }
 

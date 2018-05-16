@@ -25,14 +25,18 @@ class HttpUtils{
         $defaults = [
             "CURLOPT_RETURNTRANSFER" => 1,
             "CURLOPT_HEADER" => 0,
-            "CURLOPT_CONNECTTIMEOUT" => 10,
-            "CURLOPT_TIMEOUT" => 15,
-            "CURLOPT_NOBODY" => 0
+            "CURLOPT_CONNECTTIMEOUT" => 20,
+            "CURLOPT_TIMEOUT" => 30,
+            "CURLOPT_NOBODY" => 0,
+            "CURLOPT_POST" => 0,
+            "CURLOPT_POSTFIELDS" => ""
         ];
 
         $options = array_merge($defaults,$options);
 
         $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, $options['CURLOPT_POST']);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $options['CURLOPT_POSTFIELDS']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, $options['CURLOPT_RETURNTRANSFER']);
         curl_setopt($ch, CURLOPT_HEADER, $options['CURLOPT_HEADER']);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $options['CURLOPT_CONNECTTIMEOUT']);
@@ -51,6 +55,8 @@ class HttpUtils{
         return $paginaWeb;
 
     }
+
+
 
 
 }
