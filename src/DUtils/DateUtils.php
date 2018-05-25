@@ -13,7 +13,7 @@ class DateUtils {
 
         $dia = substr($data, 0, 2);
         $mes = substr($data, 3, 2);
-        $data = $mes . "/" . $dia . substr($data, 5);
+        $data = $mes . "/" . $dia . "/" . substr($data, 6);
 
         $formato = strlen($data) <= 10 ? "Y-m-d" : "Y-m-d H:i:s";
         $data = strtotime($data);
