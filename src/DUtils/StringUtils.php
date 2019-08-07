@@ -78,14 +78,14 @@ class StringUtils {
 
     public static function validateCompanyPinBR($cnpj) {
 
-        $cnpj = preg_replace("@[./-]@", "", $cnpj);
+        $cnpj = preg_replace("@[^0-9]@", "", $cnpj);
         if (strlen($cnpj) != 14 or !is_numeric($cnpj)) {
             return 0;
         }
         $j = 5;
         $k = 6;
-        $soma1 = "";
-        $soma2 = "";
+        $soma1 = 0;
+        $soma2 = 0;
 
         for ($i = 0; $i < 13; $i++) {
             $j = $j == 1 ? 9 : $j;

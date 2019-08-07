@@ -22,4 +22,15 @@ HTML;
 
     }
 
+    public function testValidateCompanyPinBR(){
+
+        $valido = StringUtils::validateCompanyPinBR("10.979.879/0001-19");
+        $invalido = StringUtils::validateCompanyPinBR("10.979.879/0001-18");
+
+        $this->assertTrue($valido);
+        $this->assertFalse($invalido);
+
+
+    }
+
 }
