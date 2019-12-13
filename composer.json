@@ -1,7 +1,7 @@
 {
   "name": "danielcmm/dutils",
   "type": "library",
-  "version" : "1.1.7",
+  "version" : "1.2.0",
   "description": "Simple Utility Classes",
   "keywords": ["utility","currency","date","environment","address","file"],
   "homepage": "https://github.com/danielcmm/DUtils",
@@ -15,8 +15,8 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0",
-    "laravel/framework": "5.*"
+    "php": "7.3.*",
+    "laravel/framework": "6.*"
   },
   "require-dev" : {
     "phpunit/phpunit": "~6.1"
