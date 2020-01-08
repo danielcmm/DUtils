@@ -20,7 +20,7 @@ class AddressUtils{
             "MG" => "Minas Gerais",
             "MS" => "Mato Grosso do Sul",
             "MT" => "Mato Grosso",
-            "PA" => "Para",
+            "PA" => "Pará",
             "PB" => "Paraíba",
             "PE" => "Pernambuco",
             "PI" => "Piauí",
