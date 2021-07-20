@@ -171,12 +171,8 @@ class StringUtils {
             foreach ($remove as $item){
                 $item->parentNode->removeChild($item);
             }
-
         }
-
         return $dom->saveHTML();
 
     }
-
-
 }
