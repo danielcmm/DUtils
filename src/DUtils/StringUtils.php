@@ -11,9 +11,7 @@ class StringUtils {
         if (empty($email))
             return "";
 
-        $domain = substr(strrchr($email, "@"), 1);
-
-        return $domain;
+        return substr(strrchr($email, "@"), 1);
     }
 
     public static function maskZipCodeBR($cep) {
